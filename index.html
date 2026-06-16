@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>選擇端別</title>
+<style>
+  @font-face {
+    font-family: 'Outfit';
+    src: url('./_shared/fonts/Outfit-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Outfit';
+    src: url('./_shared/fonts/Outfit-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+  }
+
+  :root {
+    --bg: #F2F4F8;
+    --surface: #FFFFFF;
+    --ink: #1C1C1E;
+    --muted: #8E8E93;
+    --rule: #E5E5EA;
+    --accent: #007AFF;
+    --accent2: #34C759;
+    --danger: #FF3B30;
+    --warning: #FF9500;
+    --purple: #5856D6;
+    --orange: #FF9500;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    margin: 0 auto;
+    background: var(--bg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+  }
+
+  /* Language Selector */
+  .lang-selector {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0) + 12px);
+    right: 24px;
+    z-index: 10;
+  }
+
+  .lang-selector select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 6px 28px 6px 12px;
+    font-size: 13px;
+    color: var(--ink);
+    cursor: pointer;
+    outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+  }
+
+  /* Logo */
+  .logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+
+  .logo-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(0, 122, 255, 0.25);
+  }
+
+  .logo-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: white;
+  }
+
+  .app-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .app-subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* Role Cards */
+  .role-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .role-card {
+    background: var(--surface);
+    border: 2px solid var(--rule);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .role-card:active {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+
+  .role-card.teacher { --card-accent: var(--accent); }
+  .role-card.student { --card-accent: var(--accent2); }
+  .role-card.parent { --card-accent: var(--orange); }
+
+  .role-card:hover {
+    border-color: var(--card-accent);
+  }
+
+  .role-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--bg);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .role-card.teacher .role-icon svg { fill: var(--accent); }
+  .role-card.student .role-icon svg { fill: var(--accent2); }
+  .role-card.parent .role-icon svg { fill: var(--orange); }
+
+  .role-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .role-info {
+    flex: 1;
+  }
+
+  .role-name {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .role-desc {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .role-arrow {
+    width: 20px;
+    height: 20px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* Bottom Text */
+  .bottom-text {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .bottom-text a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* Hide scrollbar */
+  .page::-webkit-scrollbar { display: none; }
+  .page { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- Language Selector -->
+  <div class="lang-selector">
+    <select id="lang-select" onchange="switchLanguage(this.value)">
+      <option value="zh-TW">繁體中文</option>
+      <option value="zh-CN">简体中文</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo-section">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+    </div>
+    <div class="app-name" data-i18n="appName">APP名稱</div>
+    <div class="app-subtitle" data-i18n="appSubtitle">選擇您的端別以繼續</div>
+  </div>
+
+  <!-- Role Cards -->
+  <div class="role-list">
+    <a href="./ios-student-login.html" class="role-card student">
+      <div class="role-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
+      <div class="role-info">
+        <div class="role-name" data-i18n="roleStudent">學生端</div>
+        <div class="role-desc" data-i18n="roleStudentDesc">在線學習與作業</div>
+      </div>
+      <svg class="role-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <a href="./ios-parent-login.html" class="role-card parent">
+      <div class="role-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </div>
+      <div class="role-info">
+        <div class="role-name" data-i18n="roleParent">家長端</div>
+        <div class="role-desc" data-i18n="roleParentDesc">關注孩子成長</div>
+      </div>
+      <svg class="role-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <a href="./ios-teacher-login.html" class="role-card teacher">
+      <div class="role-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.09l-5.5-3.03L12 10l5.5 3.06L12 16.09z"/></svg>
+      </div>
+      <div class="role-info">
+        <div class="role-name" data-i18n="roleTeacher">教師端</div>
+        <div class="role-desc" data-i18n="roleTeacherDesc">授課與教學管理</div>
+      </div>
+      <svg class="role-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+  </div>
+
+  <!-- Bottom Text -->
+  <p class="bottom-text">
+    <span data-i18n="textAgreement">選擇即代表您同意</span> <a href="#" data-i18n="linkTerms">用戶協議</a> <span data-i18n="textAnd">和</span> <a href="#" data-i18n="linkPrivacy">隱私政策</a>
+  </p>
+</div>
+
+<script>
+// ==================== 多语言支持 ====================
+const i18n = {
+  'zh-TW': {
+    appName: 'APP名稱',
+    appSubtitle: '選擇您的端別以繼續',
+    roleStudent: '學生端',
+    roleStudentDesc: '在線學習與作業',
+    roleParent: '家長端',
+    roleParentDesc: '關注孩子成長',
+    roleTeacher: '教師端',
+    roleTeacherDesc: '授課與教學管理',
+    textAgreement: '選擇即代表您同意',
+    textAnd: '和',
+    linkTerms: '用戶協議',
+    linkPrivacy: '隱私政策'
+  },
+  'zh-CN': {
+    appName: 'APP名称',
+    appSubtitle: '选择您的端别以继续',
+    roleStudent: '学生端',
+    roleStudentDesc: '在线学习与作业',
+    roleParent: '家长端',
+    roleParentDesc: '关注孩子成长',
+    roleTeacher: '教师端',
+    roleTeacherDesc: '授课与教学管理',
+    textAgreement: '选择即代表您同意',
+    textAnd: '和',
+    linkTerms: '用户协议',
+    linkPrivacy: '隐私政策'
+  },
+  'en': {
+    appName: 'APP Name',
+    appSubtitle: 'Select your portal to continue',
+    roleStudent: 'Student',
+    roleStudentDesc: 'Online Learning & Homework',
+    roleParent: 'Parent',
+    roleParentDesc: 'Track Child\'s Growth',
+    roleTeacher: 'Teacher',
+    roleTeacherDesc: 'Teaching & Management',
+    textAgreement: 'By selecting, you agree to',
+    textAnd: 'and',
+    linkTerms: 'Terms of Service',
+    linkPrivacy: 'Privacy Policy'
+  }
+};
+
+let currentLang = 'zh-TW';
+
+function switchLanguage(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+
+  document.documentElement.lang = lang;
+}
+
+switchLanguage('zh-TW');
+</script>
+
+</body>
+</html>
