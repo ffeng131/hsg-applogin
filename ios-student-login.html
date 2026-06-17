@@ -193,34 +193,6 @@
     color: var(--ink);
   }
 
-  /* Login Tabs */
-  .login-tabs {
-    display: flex;
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 4px;
-    margin-bottom: 24px;
-    border: 1px solid var(--rule);
-  }
-
-  .login-tab {
-    flex: 1;
-    height: 40px;
-    border-radius: 10px;
-    border: none;
-    background: none;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .login-tab.active {
-    background: var(--accent);
-    color: white;
-  }
-
   /* Form Styles */
   .form-container {
     flex: 1;
@@ -781,45 +753,21 @@
       <div class="app-name" data-i18n="appName">APP名稱</div>
     </div>
 
-    <div class="login-tabs">
-      <button class="login-tab active" id="tab-password" onclick="switchLoginTab('password')" data-i18n="tabPassword">密碼登入</button>
-      <button class="login-tab" id="tab-code" onclick="switchLoginTab('code')" data-i18n="tabCode">驗證碼登入</button>
-    </div>
-
     <div class="form-container">
-      <!-- 密码登录 -->
-      <div id="login-password-form">
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelEmail">電子郵件</label>
-          <input type="email" class="input-field" id="login-email" data-i18n-placeholder="placeholderEmail">
-        </div>
-
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelPassword">密碼</label>
-          <div class="input-wrapper">
-            <input type="password" class="input-field" id="login-password" data-i18n-placeholder="placeholderPassword">
-            <span class="input-icon">
-              <button class="toggle-password" onclick="togglePassword('login-password', this)">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              </button>
-            </span>
-          </div>
-        </div>
+      <div class="input-group">
+        <label class="input-label" data-i18n="labelEmail">電子郵件</label>
+        <input type="email" class="input-field" id="login-email" data-i18n-placeholder="placeholderEmail">
       </div>
 
-      <!-- 验证码登录 -->
-      <div id="login-code-form" style="display: none;">
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelEmail">電子郵件</label>
-          <input type="email" class="input-field" id="login-code-email" data-i18n-placeholder="placeholderEmail">
-        </div>
-
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelCode">驗證碼</label>
-          <div class="code-input-row">
-            <input type="tel" class="input-field" id="login-code-input" maxlength="6" data-i18n-placeholder="placeholderCode">
-            <button class="btn-code" id="login-send-code-btn" onclick="sendLoginCode()" data-i18n="btnGetCode">獲取驗證碼</button>
-          </div>
+      <div class="input-group">
+        <label class="input-label" data-i18n="labelPassword">密碼</label>
+        <div class="input-wrapper">
+          <input type="password" class="input-field" id="login-password" data-i18n-placeholder="placeholderPassword">
+          <span class="input-icon">
+            <button class="toggle-password" onclick="togglePassword('login-password', this)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </span>
         </div>
       </div>
 
@@ -1085,8 +1033,6 @@
 const i18n = {
   'zh-TW': {
     appName: '星樂讀',
-    tabPassword: '密碼登入',
-    tabCode: '驗證碼登入',
     labelEmail: '電子郵件',
     labelPassword: '密碼',
     labelCode: '驗證碼',
@@ -1163,8 +1109,6 @@ const i18n = {
   },
   'zh-CN': {
     appName: '星乐读',
-    tabPassword: '密码登录',
-    tabCode: '验证码登录',
     labelEmail: '邮箱',
     labelPassword: '密码',
     labelCode: '验证码',
@@ -1241,8 +1185,6 @@ const i18n = {
   },
   'en': {
     appName: 'Xing Le Du',
-    tabPassword: 'Password',
-    tabCode: 'Code Login',
     labelEmail: 'Email',
     labelPassword: 'Password',
     labelCode: 'Verification Code',
@@ -1416,31 +1358,6 @@ function togglePassword(inputId, btn) {
     : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
 }
 
-// ==================== Login Tab Switch ====================
-let currentLoginTab = 'password';
-
-function switchLoginTab(tab) {
-  currentLoginTab = tab;
-  document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + tab).classList.add('active');
-
-  if (tab === 'password') {
-    document.getElementById('login-password-form').style.display = 'block';
-    document.getElementById('login-code-form').style.display = 'none';
-    // Show forgot password link in password tab
-    document.getElementById('link-forgot').style.display = 'block';
-    document.getElementById('login-link-row').classList.remove('link-row-single');
-    document.getElementById('login-link-row').classList.add('link-row');
-  } else {
-    document.getElementById('login-password-form').style.display = 'none';
-    document.getElementById('login-code-form').style.display = 'block';
-    // Hide forgot password link in code tab
-    document.getElementById('link-forgot').style.display = 'none';
-    document.getElementById('login-link-row').classList.remove('link-row');
-    document.getElementById('login-link-row').classList.add('link-row-single');
-  }
-}
-
 // ==================== Email Validation ====================
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -1448,44 +1365,23 @@ function isValidEmail(email) {
 
 // ==================== Login ====================
 function handleLogin() {
-  if (currentLoginTab === 'password') {
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
 
-    if (!email) {
-      showToast('toastEnterEmail');
-      shakeInput('login-email');
-      return;
-    }
-    if (!isValidEmail(email)) {
-      showToast('toastEmailInvalid');
-      shakeInput('login-email');
-      return;
-    }
-    if (!password) {
-      showToast('toastEnterPassword');
-      shakeInput('login-password');
-      return;
-    }
-  } else {
-    const email = document.getElementById('login-code-email').value;
-    const code = document.getElementById('login-code-input').value;
-
-    if (!email) {
-      showToast('toastEnterEmail');
-      shakeInput('login-code-email');
-      return;
-    }
-    if (!isValidEmail(email)) {
-      showToast('toastEmailInvalid');
-      shakeInput('login-code-email');
-      return;
-    }
-    if (!code) {
-      showToast('toastEnterCode');
-      shakeInput('login-code-input');
-      return;
-    }
+  if (!email) {
+    showToast('toastEnterEmail');
+    shakeInput('login-email');
+    return;
+  }
+  if (!isValidEmail(email)) {
+    showToast('toastEmailInvalid');
+    shakeInput('login-email');
+    return;
+  }
+  if (!password) {
+    showToast('toastEnterPassword');
+    shakeInput('login-password');
+    return;
   }
 
   const btn = document.getElementById('login-btn');
@@ -1497,36 +1393,6 @@ function handleLogin() {
     btn.disabled = false;
     showToast('toastLoginSuccess');
   }, 1500);
-}
-
-// ==================== Send Login Code ====================
-function sendLoginCode() {
-  const email = document.getElementById('login-code-email').value;
-  if (!email) {
-    showToast('toastEnterEmailFirst');
-    return;
-  }
-  if (!isValidEmail(email)) {
-    showToast('toastEmailInvalid');
-    return;
-  }
-
-  const btn = document.getElementById('login-send-code-btn');
-  let seconds = 60;
-  btn.disabled = true;
-
-  codeTimer = setInterval(() => {
-    seconds--;
-    if (seconds <= 0) {
-      clearInterval(codeTimer);
-      btn.disabled = false;
-      btn.textContent = i18n[currentLang].btnGetCode;
-    } else {
-      btn.textContent = seconds + 's';
-    }
-  }, 1000);
-
-  showToast('toastCodeSent');
 }
 
 // ==================== Role Selection ====================
