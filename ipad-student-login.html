@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>嗨家校 - 登入</title>
+<title>星未来 - 登入</title>
 <style>
   @font-face {
     font-family: 'Outfit';
@@ -25,7 +25,7 @@
     --ink: #1C1C1E;
     --muted: #8E8E93;
     --rule: #E5E5EA;
-    --accent: #77D54C;
+    --accent: #F8CB3E;
     --accent2: #34C759;
     --danger: #FF3B30;
     --warning: #FF9500;
@@ -173,20 +173,17 @@
   }
 
   .logo-icon {
-    width: 96px;
-    height: 96px;
-    background: transparent;
-    border-radius: 20px;
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
-    overflow: hidden;
+    margin-bottom: 20px;
   }
 
   .logo-icon img {
-    width: 100%;
-    height: 100%;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
   }
 
@@ -259,7 +256,7 @@
 
   .input-field:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(119, 213, 76, 0.15);
+    box-shadow: 0 0 0 3px rgba(248, 203, 62, 0.15);
   }
 
   .input-field::placeholder {
@@ -460,7 +457,7 @@
   }
 
   .btn-code:active:not(:disabled) {
-    background: rgba(119, 213, 76, 0.05);
+    background: rgba(248, 203, 62, 0.05);
   }
 
   /* Steps Indicator */
@@ -561,7 +558,7 @@
 
   .role-card.selected {
     border-color: var(--accent);
-    background: rgba(119, 213, 76, 0.05);
+    background: rgba(248, 203, 62, 0.05);
   }
 
   .role-card:active {
@@ -639,7 +636,7 @@
 
   .school-item:active,
   .school-item.selected {
-    background: rgba(119, 213, 76, 0.05);
+    background: rgba(248, 203, 62, 0.05);
   }
 
   .school-item.selected .check-icon {
@@ -754,6 +751,127 @@
     width: 12px;
     height: 20px;
   }
+
+  /* iPad Landscape Layout */
+  @media (orientation: landscape) and (min-width: 768px) {
+    .app-container {
+      max-width: none;
+      background: linear-gradient(135deg, #FFF9E6 0%, #F2F4F8 100%);
+    }
+
+    #page-login {
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+      padding: 0;
+      background: linear-gradient(135deg, #FFF9E6 0%, #F2F4F8 100%);
+    }
+
+    .login-brand-panel {
+      width: 45%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .login-brand-panel .logo-section {
+      margin: 0;
+    }
+
+    .login-brand-panel .logo-icon {
+      width: 140px;
+      height: 140px;
+    }
+
+    .login-brand-panel .app-name {
+      font-size: 32px;
+    }
+
+    .login-card {
+      width: 55%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px;
+      margin: 40px 40px 40px 0;
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .login-card .login-tabs {
+      margin-bottom: 32px;
+    }
+
+    .login-card .form-container {
+      flex: 0 0 auto;
+    }
+
+    .login-card .bottom-section {
+      margin-top: 24px;
+      padding-bottom: 0;
+    }
+
+    .login-card .input-field {
+      font-size: 16px;
+      padding: 14px 16px;
+    }
+
+    .login-card .btn-primary {
+      padding: 16px;
+      font-size: 17px;
+    }
+
+    /* Forgot / Register pages as centered cards */
+    .page:not(#page-login) {
+      width: 640px;
+      left: calc(50% - 320px);
+      top: 40px;
+      bottom: 40px;
+      height: auto;
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      padding: 0 48px;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+
+    .page:not(#page-login) .nav-bar {
+      margin-top: 16px;
+    }
+
+    .page:not(#page-login) .form-container {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .page:not(#page-login) .section-title {
+      font-size: 26px;
+    }
+
+    .page:not(#page-login) .input-field {
+      font-size: 16px;
+      padding: 14px 16px;
+    }
+
+    .page:not(#page-login) .btn-primary,
+    .page:not(#page-login) .btn-code {
+      padding: 16px;
+      font-size: 17px;
+    }
+
+    .page:not(#page-login) .success-icon {
+      width: 100px;
+      height: 100px;
+    }
+
+    .page:not(#page-login) .success-title {
+      font-size: 30px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -777,65 +895,69 @@
 
   <!-- ==================== 登录页面 ==================== -->
   <div class="page active" id="page-login">
-    <div class="logo-section">
-      <div class="logo-icon">
-        <img src="./assets/haijiaxiao-logo.png" alt="嗨家校 Logo">
+    <div class="login-brand-panel">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <img src="./assets/xingweilai-logo.png" alt="星未来 Logo">
       </div>
-      <div class="app-name" data-i18n="appName">嗨家校</div>
+        <div class="app-name" data-i18n="appName">星未来</div>
+      </div>
     </div>
 
-    <div class="login-tabs">
-      <button class="login-tab active" id="tab-password" onclick="switchLoginTab('password')" data-i18n="tabPassword">密碼登入</button>
-      <button class="login-tab" id="tab-code" onclick="switchLoginTab('code')" data-i18n="tabCode">驗證碼登入</button>
-    </div>
+    <div class="login-card">
+      <div class="login-tabs">
+        <button class="login-tab active" id="tab-password" onclick="switchLoginTab('password')" data-i18n="tabPassword">密碼登入</button>
+        <button class="login-tab" id="tab-code" onclick="switchLoginTab('code')" data-i18n="tabCode">驗證碼登入</button>
+      </div>
 
-    <div class="form-container">
-      <!-- 密码登录 -->
-      <div id="login-password-form">
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelEmail">電子郵件</label>
-          <input type="email" class="input-field" id="login-email" data-i18n-placeholder="placeholderEmail">
-        </div>
+      <div class="form-container">
+        <!-- 密码登录 -->
+        <div id="login-password-form">
+          <div class="input-group">
+            <label class="input-label" data-i18n="labelEmail">電子郵件</label>
+            <input type="email" class="input-field" id="login-email" data-i18n-placeholder="placeholderEmail">
+          </div>
 
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelPassword">密碼</label>
-          <div class="input-wrapper">
-            <input type="password" class="input-field" id="login-password" data-i18n-placeholder="placeholderPassword">
-            <span class="input-icon">
-              <button class="toggle-password" onclick="togglePassword('login-password', this)">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              </button>
-            </span>
+          <div class="input-group">
+            <label class="input-label" data-i18n="labelPassword">密碼</label>
+            <div class="input-wrapper">
+              <input type="password" class="input-field" id="login-password" data-i18n-placeholder="placeholderPassword">
+              <span class="input-icon">
+                <button class="toggle-password" onclick="togglePassword('login-password', this)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 验证码登录 -->
-      <div id="login-code-form" style="display: none;">
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelEmail">電子郵件</label>
-          <input type="email" class="input-field" id="login-code-email" data-i18n-placeholder="placeholderEmail">
-        </div>
+        <!-- 验证码登录 -->
+        <div id="login-code-form" style="display: none;">
+          <div class="input-group">
+            <label class="input-label" data-i18n="labelEmail">電子郵件</label>
+            <input type="email" class="input-field" id="login-code-email" data-i18n-placeholder="placeholderEmail">
+          </div>
 
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelCode">驗證碼</label>
-          <div class="code-input-row">
-            <input type="tel" class="input-field" id="login-code-input" maxlength="6" data-i18n-placeholder="placeholderCode">
-            <button class="btn-code" id="login-send-code-btn" onclick="sendLoginCode()" data-i18n="btnGetCode">獲取驗證碼</button>
+          <div class="input-group">
+            <label class="input-label" data-i18n="labelCode">驗證碼</label>
+            <div class="code-input-row">
+              <input type="tel" class="input-field" id="login-code-input" maxlength="6" data-i18n-placeholder="placeholderCode">
+              <button class="btn-code" id="login-send-code-btn" onclick="sendLoginCode()" data-i18n="btnGetCode">獲取驗證碼</button>
+            </div>
           </div>
         </div>
+
+        <div class="link-row" id="login-link-row">
+          <button class="link-text" id="link-forgot" onclick="goToPage('page-forgot')" data-i18n="linkForgot">忘記密碼？</button>
+          <button class="link-text" id="link-register" onclick="goToPage('page-register-info')" data-i18n="linkRegister">註冊帳號</button>
+        </div>
+
+        <button class="btn btn-primary" id="login-btn" onclick="handleLogin()" data-i18n="btnLogin">登入</button>
       </div>
 
-      <div class="link-row" id="login-link-row">
-        <button class="link-text" id="link-forgot" onclick="goToPage('page-forgot')" data-i18n="linkForgot">忘記密碼？</button>
-        <button class="link-text" id="link-register" onclick="goToPage('page-register-info')" data-i18n="linkRegister">註冊帳號</button>
+      <div class="bottom-section">
+        <p class="bottom-text"><span data-i18n="textAgreement">登入即代表您同意</span> <a href="#" class="link-text" data-i18n="linkTerms">用戶協議</a> <span data-i18n="textAnd">和</span> <a href="#" class="link-text" data-i18n="linkPrivacy">隱私政策</a></p>
       </div>
-
-      <button class="btn btn-primary" id="login-btn" onclick="handleLogin()" data-i18n="btnLogin">登入</button>
-    </div>
-
-    <div class="bottom-section">
-      <p class="bottom-text"><span data-i18n="textAgreement">登入即代表您同意</span> <a href="#" class="link-text" data-i18n="linkTerms">用戶協議</a> <span data-i18n="textAnd">和</span> <a href="#" class="link-text" data-i18n="linkPrivacy">隱私政策</a></p>
     </div>
   </div>
 
@@ -1087,7 +1209,7 @@
 // ==================== 多语言支持 ====================
 const i18n = {
   'zh-TW': {
-    appName: '嗨家校',
+    appName: '星未来',
     tabPassword: '密碼登入',
     tabCode: '驗證碼登入',
     labelEmail: '電子郵件',
@@ -1133,7 +1255,7 @@ const i18n = {
     subtitleSelectSchool: '選擇您所在的學校以完成註冊',
     titleRegisterSuccess: '註冊成功',
     textRegisterSuccess: '註冊成功！',
-    descRegisterSuccess: '歡迎加入嗨家校<br>您的帳號已創建成功',
+    descRegisterSuccess: '歡迎加入星未来<br>您的帳號已創建成功',
     titleForgotPassword: '忘記密碼',
     titleVerifyEmail: '驗證電子郵件',
     subtitleVerifyEmail: '請輸入您註冊時使用的電子郵件地址',
@@ -1165,7 +1287,7 @@ const i18n = {
     toastEnterEmailFirst: '請先輸入電子郵件地址'
   },
   'zh-CN': {
-    appName: '嗨家校',
+    appName: '星未来',
     tabPassword: '密码登录',
     tabCode: '验证码登录',
     labelEmail: '邮箱',
@@ -1211,7 +1333,7 @@ const i18n = {
     subtitleSelectSchool: '选择您所在的学校以完成注册',
     titleRegisterSuccess: '注册成功',
     textRegisterSuccess: '注册成功！',
-    descRegisterSuccess: '欢迎加入嗨家校<br>您的账号已创建成功',
+    descRegisterSuccess: '欢迎加入星未来<br>您的账号已创建成功',
     titleForgotPassword: '忘记密码',
     titleVerifyEmail: '验证邮箱',
     subtitleVerifyEmail: '请输入您注册时使用的邮箱地址',
@@ -1243,7 +1365,7 @@ const i18n = {
     toastEnterEmailFirst: '请先输入邮箱地址'
   },
   'en': {
-    appName: 'Hai Jia Xiao',
+    appName: 'Xing Wei Lai',
     tabPassword: 'Password',
     tabCode: 'Code Login',
     labelEmail: 'Email',
@@ -1289,7 +1411,7 @@ const i18n = {
     subtitleSelectSchool: 'Select your school to complete registration',
     titleRegisterSuccess: 'Registration Successful',
     textRegisterSuccess: 'Registration Successful!',
-    descRegisterSuccess: 'Welcome to Hai Jia Xiao<br>Your account has been created',
+    descRegisterSuccess: 'Welcome to Xing Wei Lai<br>Your account has been created',
     titleForgotPassword: 'Forgot Password',
     titleVerifyEmail: 'Verify Email',
     subtitleVerifyEmail: 'Please enter the email you used to register',
@@ -1346,9 +1468,6 @@ function switchLanguage(lang) {
 
   // Update HTML lang attribute
   document.documentElement.lang = lang;
-
-  // Update page title
-  document.title = (t.appName || 'APP') + ' - ' + (t.btnLogin || 'Login');
 }
 
 // ==================== Page Navigation ====================

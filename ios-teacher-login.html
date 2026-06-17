@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>APP名稱 - 登入</title>
+<title>嗨夫子 - 登入</title>
 <style>
   @font-face {
     font-family: 'Outfit';
@@ -173,21 +173,21 @@
   }
 
   .logo-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--accent) 0%, #5856D6 100%);
+    width: 96px;
+    height: 96px;
+    background: transparent;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 24px rgba(0, 122, 255, 0.25);
+    margin-bottom: 16px;
+    overflow: hidden;
   }
 
-  .logo-icon svg {
-    width: 40px;
-    height: 40px;
-    fill: white;
+  .logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .app-name {
@@ -732,11 +732,39 @@
   .hidden {
     display: none !important;
   }
+
+  /* Back to Index Button */
+  .back-to-index {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0) + 12px);
+    left: 16px;
+    z-index: 20;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 17px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px;
+    text-decoration: none;
+  }
+  .back-to-index svg {
+    width: 12px;
+    height: 20px;
+  }
 </style>
 </head>
 <body>
 
 <div class="app-container">
+
+  <!-- Back to Index -->
+  <a href="./index.html" class="back-to-index">
+    <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2L2 10l8 8"/></svg>
+    <span>返回</span>
+  </a>
 
   <!-- Language Selector -->
   <div class="lang-selector">
@@ -749,11 +777,12 @@
 
   <!-- ==================== 登录页面 ==================== -->
   <div class="page active" id="page-login">
+
     <div class="logo-section">
       <div class="logo-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+        <img src="./assets/haifuzi-logo.png" alt="嗨夫子 Logo">
       </div>
-      <div class="app-name" data-i18n="appName">APP名稱</div>
+      <div class="app-name" data-i18n="appName">嗨夫子</div>
     </div>
 
     <div class="login-tabs">
@@ -809,6 +838,7 @@
     <div class="bottom-section">
       <p class="bottom-text"><span data-i18n="textAgreement">登入即代表您同意</span> <a href="#" class="link-text" data-i18n="linkTerms">用戶協議</a> <span data-i18n="textAnd">和</span> <a href="#" class="link-text" data-i18n="linkPrivacy">隱私政策</a></p>
     </div>
+
   </div>
 
   <!-- ==================== 注册 - 填写信息 ==================== -->
@@ -1059,7 +1089,7 @@
 // ==================== 多语言支持 ====================
 const i18n = {
   'zh-TW': {
-    appName: 'APP名稱',
+    appName: '嗨夫子',
     tabPassword: '密碼登入',
     tabCode: '驗證碼登入',
     labelEmail: '電子郵件',
@@ -1105,7 +1135,7 @@ const i18n = {
     subtitleSelectSchool: '選擇您所在的學校以完成註冊',
     titleRegisterSuccess: '註冊成功',
     textRegisterSuccess: '註冊成功！',
-    descRegisterSuccess: '歡迎加入APP名稱<br>您的帳號已創建成功',
+    descRegisterSuccess: '歡迎加入嗨夫子<br>您的帳號已創建成功',
     titleForgotPassword: '忘記密碼',
     titleVerifyEmail: '驗證電子郵件',
     subtitleVerifyEmail: '請輸入您註冊時使用的電子郵件地址',
@@ -1137,7 +1167,7 @@ const i18n = {
     toastEnterEmailFirst: '請先輸入電子郵件地址'
   },
   'zh-CN': {
-    appName: 'APP名称',
+    appName: '嗨夫子',
     tabPassword: '密码登录',
     tabCode: '验证码登录',
     labelEmail: '邮箱',
@@ -1183,7 +1213,7 @@ const i18n = {
     subtitleSelectSchool: '选择您所在的学校以完成注册',
     titleRegisterSuccess: '注册成功',
     textRegisterSuccess: '注册成功！',
-    descRegisterSuccess: '欢迎加入APP名称<br>您的账号已创建成功',
+    descRegisterSuccess: '欢迎加入嗨夫子<br>您的账号已创建成功',
     titleForgotPassword: '忘记密码',
     titleVerifyEmail: '验证邮箱',
     subtitleVerifyEmail: '请输入您注册时使用的邮箱地址',
@@ -1215,7 +1245,7 @@ const i18n = {
     toastEnterEmailFirst: '请先输入邮箱地址'
   },
   'en': {
-    appName: 'APP Name',
+    appName: 'Hai Fu Zi',
     tabPassword: 'Password',
     tabCode: 'Code Login',
     labelEmail: 'Email',
@@ -1261,7 +1291,7 @@ const i18n = {
     subtitleSelectSchool: 'Select your school to complete registration',
     titleRegisterSuccess: 'Registration Successful',
     textRegisterSuccess: 'Registration Successful!',
-    descRegisterSuccess: 'Welcome to APP Name<br>Your account has been created',
+    descRegisterSuccess: 'Welcome to Hai Fu Zi<br>Your account has been created',
     titleForgotPassword: 'Forgot Password',
     titleVerifyEmail: 'Verify Email',
     subtitleVerifyEmail: 'Please enter the email you used to register',
@@ -1318,11 +1348,25 @@ function switchLanguage(lang) {
 
   // Update HTML lang attribute
   document.documentElement.lang = lang;
+
+  // Update page title
+  document.title = (t.appName || 'APP') + ' - ' + (t.btnLogin || 'Login');
+
+  // Sync language selector
+  const langSelect = document.getElementById('lang-select');
+  if (langSelect) langSelect.value = lang;
 }
 
 // ==================== Page Navigation ====================
 let pageHistory = [];
 let currentPage = 'page-login';
+
+function toggleGlobalHeader(show) {
+  const backBtn = document.querySelector('.back-to-index');
+  const langSelector = document.querySelector('.lang-selector');
+  if (backBtn) backBtn.style.display = show ? 'flex' : 'none';
+  if (langSelector) langSelector.style.display = show ? 'block' : 'none';
+}
 
 function goToPage(pageId) {
   if (pageId === currentPage) return;
@@ -1341,6 +1385,7 @@ function goToPage(pageId) {
   }, 350);
 
   currentPage = pageId;
+  toggleGlobalHeader(pageId === 'page-login');
 }
 
 function goBack() {
@@ -1359,6 +1404,7 @@ function goBack() {
   }, 350);
 
   currentPage = prevPage;
+  toggleGlobalHeader(prevPage === 'page-login');
 }
 
 // ==================== Toast ====================
