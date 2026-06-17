@@ -153,6 +153,7 @@
 
   .role-card.teacher { --card-accent: var(--accent); }
   .role-card.student { --card-accent: #F8CB3E; }
+  .role-card.student-ipad { --card-accent: #F8CB3E; }
   .role-card.ipad { --card-accent: #F8CB3E; }
   .role-card.parent { --card-accent: #77D54C; }
 
@@ -173,6 +174,7 @@
 
   .role-card.teacher .role-icon svg { fill: var(--accent); }
   .role-card.student .role-icon svg { fill: #F8CB3E; }
+  .role-card.student-ipad .role-icon svg { fill: #F8CB3E; }
   .role-card.ipad .role-icon svg { fill: #F8CB3E; }
   .role-card.parent .role-icon svg { fill: #77D54C; }
 
@@ -189,6 +191,7 @@
     font-size: 17px;
     font-weight: 600;
     margin-bottom: 4px;
+    white-space: nowrap;
   }
 
   .role-desc {
@@ -229,50 +232,61 @@
 
   <!-- Title -->
   <div class="logo-section">
-    <div class="app-subtitle" style="font-size: 17px; color: var(--ink); font-weight: 600; margin-bottom: 32px; text-align: center;">选择下方的客户端进入对应的登录页面</div>
+    <div class="app-subtitle" style="font-size: 17px; color: var(--ink); font-weight: 600; margin-bottom: 8px; text-align: center;">点击下方的客户端查看对应的登录页面</div>
   </div>
 
   <!-- Role Cards -->
   <div class="role-list">
-    <a href="./ios-student-login.html" class="role-card student">
+    <a href="./ios-student-login.html?frame=1" class="role-card student">
       <div class="role-icon">
         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
       </div>
       <div class="role-info">
-        <div class="role-name" data-i18n="roleStudent">學生端</div>
+        <div class="role-name" data-i18n="roleStudent">星樂讀iPhone版</div>
         <div class="role-desc"></div>
       </div>
       <svg class="role-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </a>
 
-    <a href="./ipad-student-login.html" class="role-card ipad">
+    <a href="./ipadv-student-login.html?frame=ipad" class="role-card student-ipad">
       <div class="role-icon">
         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H5V7h14v11zM12 17c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z"/></svg>
       </div>
       <div class="role-info">
-        <div class="role-name" data-i18n="roleIpad">星未来iPad版</div>
+        <div class="role-name" data-i18n="roleStudentIpad">星樂讀iPad版</div>
         <div class="role-desc"></div>
       </div>
       <svg class="role-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </a>
 
-    <a href="./ios-parent-login.html" class="role-card parent">
+    <a href="./ipad-student-login.html?frame=ipad-landscape" class="role-card ipad">
+      <div class="role-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H5V7h14v11zM12 17c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z"/></svg>
+      </div>
+      <div class="role-info">
+        <div class="role-name" data-i18n="roleIpad">星未來iPad版</div>
+        <div class="role-desc"></div>
+      </div>
+      <svg class="role-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </a>
+
+    <a href="./ios-parent-login.html?frame=1" class="role-card parent">
       <div class="role-icon">
         <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
       </div>
       <div class="role-info">
-        <div class="role-name" data-i18n="roleParent">家長端</div>
+        <div class="role-name" data-i18n="roleParent">嗨家校iPhone版</div>
         <div class="role-desc"></div>
       </div>
       <svg class="role-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
     </a>
 
-    <a href="./ios-teacher-login.html" class="role-card teacher">
+    <a href="./ios-teacher-login.html?frame=1" class="role-card teacher">
       <div class="role-icon">
         <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 13.09l-5.5-3.03L12 10l5.5 3.06L12 16.09z"/></svg>
       </div>
       <div class="role-info">
-        <div class="role-name" data-i18n="roleTeacher">教師端</div>
+        <div class="role-name" data-i18n="roleTeacher">嗨夫子iPhone版</div>
         <div class="role-desc"></div>
       </div>
       <svg class="role-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -287,14 +301,16 @@
 const i18n = {
   'zh-TW': {
     appName: '星樂讀',
-    appSubtitle: '選擇您的端別以繼續',
-    roleStudent: '星樂讀',
+    appSubtitle: '點擊下方的客戶端查看對應的登錄頁面',
+    roleStudent: '星樂讀iPhone版',
     roleStudentDesc: '在線學習與作業',
-    roleIpad: '星未来iPad版',
+    roleStudentIpad: '星樂讀iPad版',
+    roleStudentIpadDesc: '大屏學習體驗',
+    roleIpad: '星未來iPad版',
     roleIpadDesc: '大屏學習體驗',
-    roleParent: '嗨家校',
+    roleParent: '嗨家校iPhone版',
     roleParentDesc: '關注孩子成長',
-    roleTeacher: '嗨夫子',
+    roleTeacher: '嗨夫子iPhone版',
     roleTeacherDesc: '授課與教學管理',
     textAgreement: '選擇即代表您同意',
     textAnd: '和',
@@ -303,14 +319,16 @@ const i18n = {
   },
   'zh-CN': {
     appName: '星乐读',
-    appSubtitle: '选择您的端别以继续',
-    roleStudent: '星乐读',
+    appSubtitle: '点击下方的客户端查看对应的登录页面',
+    roleStudent: '星乐读iPhone版',
     roleStudentDesc: '在线学习与作业',
+    roleStudentIpad: '星乐读iPad版',
+    roleStudentIpadDesc: '大屏学习体验',
     roleIpad: '星未来iPad版',
     roleIpadDesc: '大屏学习体验',
-    roleParent: '嗨家校',
+    roleParent: '嗨家校iPhone版',
     roleParentDesc: '关注孩子成长',
-    roleTeacher: '嗨夫子',
+    roleTeacher: '嗨夫子iPhone版',
     roleTeacherDesc: '授课与教学管理',
     textAgreement: '选择即代表您同意',
     textAnd: '和',
@@ -319,14 +337,16 @@ const i18n = {
   },
   'en': {
     appName: 'Xing Le Du',
-    appSubtitle: 'Select your portal to continue',
-    roleStudent: 'Xing Le Du',
+    appSubtitle: 'Tap a client below to view the login page',
+    roleStudent: 'Xing Le Du iPhone',
     roleStudentDesc: 'Online Learning & Homework',
+    roleStudentIpad: 'Xing Le Du iPad',
+    roleStudentIpadDesc: 'Large Screen Learning',
     roleIpad: 'Xing Wei Lai iPad',
     roleIpadDesc: 'Large Screen Learning',
-    roleParent: 'Hai Jia Xiao',
+    roleParent: 'Hai Jia Xiao iPhone',
     roleParentDesc: 'Track Child\'s Growth',
-    roleTeacher: 'Hai Fu Zi',
+    roleTeacher: 'Hai Fu Zi iPhone',
     roleTeacherDesc: 'Teaching & Management',
     textAgreement: 'By selecting, you agree to',
     textAnd: 'and',
