@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>嗨夫子 - 登入</title>
+<title>未来星（线上） - 登入</title>
 <style>
   @font-face {
     font-family: 'Outfit';
@@ -25,7 +25,7 @@
     --ink: #1C1C1E;
     --muted: #8E8E93;
     --rule: #E5E5EA;
-    --accent: #007AFF;
+    --accent: #F8CB3E;
     --accent2: #34C759;
     --danger: #FF3B30;
     --warning: #FF9500;
@@ -173,20 +173,17 @@
   }
 
   .logo-icon {
-    width: 96px;
-    height: 96px;
-    background: transparent;
-    border-radius: 20px;
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
-    overflow: hidden;
+    margin-bottom: 20px;
   }
 
   .logo-icon img {
-    width: 100%;
-    height: 100%;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
   }
 
@@ -259,7 +256,7 @@
 
   .input-field:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(248, 203, 62, 0.15);
   }
 
   .input-field::placeholder {
@@ -460,7 +457,7 @@
   }
 
   .btn-code:active:not(:disabled) {
-    background: rgba(0, 122, 255, 0.05);
+    background: rgba(248, 203, 62, 0.05);
   }
 
   /* Steps Indicator */
@@ -522,7 +519,7 @@
   .trial-icon {
     width: 80px;
     height: 80px;
-    background: rgba(0, 122, 255, 0.12);
+    background: rgba(248, 203, 62, 0.12);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -570,6 +567,94 @@
     transform: translate(-50%, -50%) scale(1);
   }
 
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+  }
+
+  .modal-overlay.show {
+    display: flex;
+  }
+
+  .modal {
+    background: var(--surface);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+    position: relative;
+    animation: modalIn 0.25s ease-out;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .modal-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(248, 203, 62, 0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px auto 16px;
+  }
+
+  .modal-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--accent);
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .modal-text {
+    font-size: 14px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
   /* Role Selection */
   .role-grid {
     display: grid;
@@ -590,7 +675,7 @@
 
   .role-card.selected {
     border-color: var(--accent);
-    background: rgba(0, 122, 255, 0.05);
+    background: rgba(248, 203, 62, 0.05);
   }
 
   .role-card:active {
@@ -668,7 +753,7 @@
 
   .school-item:active,
   .school-item.selected {
-    background: rgba(0, 122, 255, 0.05);
+    background: rgba(248, 203, 62, 0.05);
   }
 
   .school-item.selected .check-icon {
@@ -783,6 +868,127 @@
     width: 12px;
     height: 20px;
   }
+
+  /* iPad Landscape Layout */
+  @media (orientation: landscape) and (min-width: 768px) {
+    .app-container {
+      max-width: none;
+      background: linear-gradient(135deg, #FFF9E6 0%, #F2F4F8 100%);
+    }
+
+    #page-login {
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+      padding: 0;
+      background: linear-gradient(135deg, #FFF9E6 0%, #F2F4F8 100%);
+    }
+
+    .login-brand-panel {
+      width: 45%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .login-brand-panel .logo-section {
+      margin: 0;
+    }
+
+    .login-brand-panel .logo-icon {
+      width: 140px;
+      height: 140px;
+    }
+
+    .login-brand-panel .app-name {
+      font-size: 32px;
+    }
+
+    .login-card {
+      width: 55%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px;
+      margin: 40px 40px 40px 0;
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .login-card .login-tabs {
+      margin-bottom: 32px;
+    }
+
+    .login-card .form-container {
+      flex: 0 0 auto;
+    }
+
+    .login-card .bottom-section {
+      margin-top: 24px;
+      padding-bottom: 0;
+    }
+
+    .login-card .input-field {
+      font-size: 16px;
+      padding: 14px 16px;
+    }
+
+    .login-card .btn-primary {
+      padding: 16px;
+      font-size: 17px;
+    }
+
+    /* Forgot / Register pages as centered cards */
+    .page:not(#page-login) {
+      width: 640px;
+      left: calc(50% - 320px);
+      top: 40px;
+      bottom: 40px;
+      height: auto;
+      background: var(--surface);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      padding: 0 48px;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+
+    .page:not(#page-login) .nav-bar {
+      margin-top: 16px;
+    }
+
+    .page:not(#page-login) .form-container {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .page:not(#page-login) .section-title {
+      font-size: 26px;
+    }
+
+    .page:not(#page-login) .input-field {
+      font-size: 16px;
+      padding: 14px 16px;
+    }
+
+    .page:not(#page-login) .btn-primary,
+    .page:not(#page-login) .btn-code {
+      padding: 16px;
+      font-size: 17px;
+    }
+
+    .page:not(#page-login) .success-icon {
+      width: 100px;
+      height: 100px;
+    }
+
+    .page:not(#page-login) .success-title {
+      font-size: 30px;
+    }
+  }
 </style>
 <link rel="stylesheet" href="./frame-mode.css">
 </head>
@@ -807,68 +1013,48 @@
 
   <!-- ==================== 登录页面 ==================== -->
   <div class="page active" id="page-login">
-
-    <div class="logo-section">
-      <div class="logo-icon">
-        <img src="./assets/haifuzi-logo.png" alt="嗨夫子 Logo">
+    <div class="login-brand-panel">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <img src="./assets/xingweilai-logo.png" alt="星未来 Logo">
       </div>
-      <div class="app-name" data-i18n="appName">嗨夫子</div>
+        <div class="app-name" data-i18n="appName">星未来</div>
+      </div>
     </div>
 
-    <div class="login-tabs">
-      <button class="login-tab active" id="tab-password" onclick="switchLoginTab('password')" data-i18n="tabPassword">密碼登入</button>
-      <button class="login-tab" id="tab-code" onclick="switchLoginTab('code')" data-i18n="tabCode">驗證碼登入</button>
-    </div>
+    <div class="login-card">
+      <div class="form-container">
+        <!-- 账号密码登录 -->
+        <div id="login-password-form">
+          <div class="input-group">
+            <label class="input-label" data-i18n="labelEmail">賬號</label>
+            <input type="text" class="input-field" id="login-email" data-i18n-placeholder="placeholderEmail">
+          </div>
 
-    <div class="form-container">
-      <!-- 密码登录 -->
-      <div id="login-password-form">
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelEmail">電子郵件</label>
-          <input type="email" class="input-field" id="login-email" data-i18n-placeholder="placeholderEmail">
-        </div>
-
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelPassword">密碼</label>
-          <div class="input-wrapper">
-            <input type="password" class="input-field" id="login-password" data-i18n-placeholder="placeholderPassword">
-            <span class="input-icon">
-              <button class="toggle-password" onclick="togglePassword('login-password', this)">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              </button>
-            </span>
+          <div class="input-group">
+            <label class="input-label" data-i18n="labelPassword">密碼</label>
+            <div class="input-wrapper">
+              <input type="password" class="input-field" id="login-password" data-i18n-placeholder="placeholderPassword">
+              <span class="input-icon">
+                <button class="toggle-password" onclick="togglePassword('login-password', this)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 验证码登录 -->
-      <div id="login-code-form" style="display: none;">
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelEmail">電子郵件</label>
-          <input type="email" class="input-field" id="login-code-email" data-i18n-placeholder="placeholderEmail">
+        <div class="link-row-single" id="login-link-row">
+          <button class="link-text" id="link-forgot" onclick="showForgotModal()" data-i18n="linkForgot">忘記密碼？</button>
         </div>
 
-        <div class="input-group">
-          <label class="input-label" data-i18n="labelCode">驗證碼</label>
-          <div class="code-input-row">
-            <input type="tel" class="input-field" id="login-code-input" maxlength="6" data-i18n-placeholder="placeholderCode">
-            <button class="btn-code" id="login-send-code-btn" onclick="sendLoginCode()" data-i18n="btnGetCode">獲取驗證碼</button>
-          </div>
-        </div>
+        <button class="btn btn-primary" id="login-btn" onclick="handleLogin()" data-i18n="btnLogin">登入</button>
       </div>
 
-      <div class="link-row" id="login-link-row">
-        <button class="link-text" id="link-forgot" onclick="goToPage('page-forgot')" data-i18n="linkForgot">忘記密碼？</button>
-        <button class="link-text" id="link-register" onclick="goToPage('page-register-info')" data-i18n="linkRegister">註冊帳號</button>
+      <div class="bottom-section">
+        <p class="bottom-text"><span data-i18n="textAgreement">登入即代表您同意</span> <a href="#" class="link-text" data-i18n="linkTerms">用戶協議</a> <span data-i18n="textAnd">和</span> <a href="#" class="link-text" data-i18n="linkPrivacy">隱私政策</a></p>
       </div>
-
-      <button class="btn btn-primary" id="login-btn" onclick="handleLogin()" data-i18n="btnLogin">登入</button>
     </div>
-
-    <div class="bottom-section">
-      <p class="bottom-text"><span data-i18n="textAgreement">登入即代表您同意</span> <a href="#" class="link-text" data-i18n="linkTerms">用戶協議</a> <span data-i18n="textAnd">和</span> <a href="#" class="link-text" data-i18n="linkPrivacy">隱私政策</a></p>
-    </div>
-
   </div>
 
   <!-- ==================== 注册 - 填写信息 ==================== -->
@@ -1018,7 +1204,7 @@
     </div>
 
     <h2 class="success-title" data-i18n="textRegisterTrialTitle">恭喜，註冊成功！</h2>
-    <p class="trial-desc" data-i18n="descRegisterTrial">您的郵箱暫未綁定任何學校，當前僅可遊客模式體驗產品基礎功能。若需使用班級管理相關權限，請聯繫學校對接交付老師，將您的郵箱配置為授課教師或班主任賬號。</p>
+    <p class="trial-desc" data-i18n="descRegisterTrial">您的郵箱暫未綁定任何學校，當前僅可遊客模式體驗產品基礎功能。若需使用班級管理相關權限，請聯繫班主任老師，將您的郵箱配置為具體學生身份。</p>
 
     <button class="btn btn-primary" onclick="goToPage('page-login')" data-i18n="btnTryNow">立即體驗產品功能</button>
   </div>
@@ -1128,6 +1314,21 @@
 
 </div>
 
+<!-- Forgot Password Modal -->
+<div class="modal-overlay" id="forgot-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeForgotModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    </div>
+    <div class="modal-title" data-i18n="titleForgotHint">提示</div>
+    <div class="modal-text" data-i18n="textForgotHint">請聯繫班主任或任課老師重置密碼</div>
+    <button class="btn btn-primary" onclick="closeForgotModal()" data-i18n="btnIKnow">我知道了</button>
+  </div>
+</div>
+
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
@@ -1135,10 +1336,8 @@
 // ==================== 多语言支持 ====================
 const i18n = {
   'zh-TW': {
-    appName: '嗨夫子',
-    tabPassword: '密碼登入',
-    tabCode: '驗證碼登入',
-    labelEmail: '電子郵件',
+    appName: '未來星',
+    labelEmail: '賬號',
     labelPassword: '密碼',
     labelCode: '驗證碼',
     labelRealName: '真實姓名',
@@ -1146,7 +1345,7 @@ const i18n = {
     labelConfirmPassword: '確認密碼',
     labelNewPassword: '新密碼',
     labelConfirmNewPassword: '確認新密碼',
-    placeholderEmail: '請輸入電子郵件地址',
+    placeholderEmail: '請輸入賬號',
     placeholderPassword: '請輸入密碼',
     placeholderCode: '請輸入驗證碼',
     placeholderRealName: '請輸入真實姓名',
@@ -1165,6 +1364,9 @@ const i18n = {
     btnBackToLogin: '返回登入',
     linkForgot: '忘記密碼？',
     linkRegister: '註冊帳號',
+    titleForgotHint: '提示',
+    textForgotHint: '請聯繫班主任或任課老師重置密碼',
+    btnIKnow: '我知道了',
     linkTerms: '用戶協議',
     linkPrivacy: '隱私政策',
     textAgreement: '登入即代表您同意',
@@ -1182,8 +1384,8 @@ const i18n = {
     titleRegisterSuccess: '註冊成功',
     textRegisterSuccess: '註冊成功！',
     textRegisterTrialTitle: '恭喜，註冊成功！',
-    descRegisterSuccess: '歡迎加入嗨夫子<br>您的帳號已創建成功',
-    descRegisterTrial: '您的郵箱暫未綁定任何學校，當前僅可遊客模式體驗產品基礎功能。若需使用班級管理相關權限，請聯繫學校對接交付老師，將您的郵箱配置為授課教師或班主任賬號。',
+    descRegisterSuccess: '歡迎加入星未来<br>您的帳號已創建成功',
+    descRegisterTrial: '您的郵箱暫未綁定任何學校，當前僅可遊客模式體驗產品基礎功能。若需使用班級管理相關權限，請聯繫班主任老師，將您的郵箱配置為具體學生身份。',
     btnTryNow: '立即體驗產品功能',
     titleForgotPassword: '忘記密碼',
     titleVerifyEmail: '驗證電子郵件',
@@ -1203,23 +1405,21 @@ const i18n = {
     roleParentDesc: '關注成長',
     roleAdmin: '教務',
     roleAdminDesc: '管理教務',
-    toastEnterEmail: '請輸入電子郵件地址',
-    toastEmailInvalid: '電子郵件格式不正確',
+    toastEnterEmail: '請輸入賬號',
+    toastEmailInvalid: '賬號格式不正確',
     toastEnterPassword: '請輸入密碼',
     toastEnterCode: '請輸入驗證碼',
     toastEnterName: '請輸入真實姓名',
     toastSetPassword: '請設置密碼',
     toastPasswordShort: '密碼長度不能少於6位',
     toastPasswordMismatch: '兩次密碼輸入不一致',
-    toastCodeSent: '驗證碼已發送至電子郵件',
+    toastCodeSent: '驗證碼已發送至郵箱',
     toastLoginSuccess: '登入成功',
-    toastEnterEmailFirst: '請先輸入電子郵件地址'
+    toastEnterEmailFirst: '請先輸入賬號'
   },
   'zh-CN': {
-    appName: '嗨夫子',
-    tabPassword: '密码登录',
-    tabCode: '验证码登录',
-    labelEmail: '邮箱',
+    appName: '未来星',
+    labelEmail: '账号',
     labelPassword: '密码',
     labelCode: '验证码',
     labelRealName: '真实姓名',
@@ -1227,7 +1427,7 @@ const i18n = {
     labelConfirmPassword: '确认密码',
     labelNewPassword: '新密码',
     labelConfirmNewPassword: '确认新密码',
-    placeholderEmail: '请输入邮箱地址',
+    placeholderEmail: '请输入账号',
     placeholderPassword: '请输入密码',
     placeholderCode: '请输入验证码',
     placeholderRealName: '请输入真实姓名',
@@ -1246,6 +1446,9 @@ const i18n = {
     btnBackToLogin: '返回登录',
     linkForgot: '忘记密码？',
     linkRegister: '注册账号',
+    titleForgotHint: '提示',
+    textForgotHint: '请联系班主任或任课老师重置密码',
+    btnIKnow: '我知道了',
     linkTerms: '用户协议',
     linkPrivacy: '隐私政策',
     textAgreement: '登录即代表您同意',
@@ -1263,8 +1466,8 @@ const i18n = {
     titleRegisterSuccess: '注册成功',
     textRegisterSuccess: '注册成功！',
     textRegisterTrialTitle: '恭喜，注册成功！',
-    descRegisterSuccess: '欢迎加入嗨夫子<br>您的账号已创建成功',
-    descRegisterTrial: '您的邮箱暂未绑定任何学校，当前仅可游客模式体验产品基础功能。若需使用班级管理相关权限，请联系学校对接交付老师，将您的邮箱配置为授课教师或班主任账号。',
+    descRegisterSuccess: '欢迎加入星未来<br>您的账号已创建成功',
+    descRegisterTrial: '您的邮箱暂未绑定任何学校，当前仅可游客模式体验产品基础功能。若需使用班级管理相关权限，请联系班主任老师，将您的邮箱配置为具体学生身份。',
     btnTryNow: '立即体验产品功能',
     titleForgotPassword: '忘记密码',
     titleVerifyEmail: '验证邮箱',
@@ -1284,8 +1487,8 @@ const i18n = {
     roleParentDesc: '关注成长',
     roleAdmin: '教务',
     roleAdminDesc: '管理教务',
-    toastEnterEmail: '请输入邮箱地址',
-    toastEmailInvalid: '邮箱格式不正确',
+    toastEnterEmail: '请输入账号',
+    toastEmailInvalid: '账号格式不正确',
     toastEnterPassword: '请输入密码',
     toastEnterCode: '请输入验证码',
     toastEnterName: '请输入真实姓名',
@@ -1294,13 +1497,11 @@ const i18n = {
     toastPasswordMismatch: '两次密码输入不一致',
     toastCodeSent: '验证码已发送至邮箱',
     toastLoginSuccess: '登录成功',
-    toastEnterEmailFirst: '请先输入邮箱地址'
+    toastEnterEmailFirst: '请先输入账号'
   },
   'en': {
-    appName: 'Hai Fu Zi',
-    tabPassword: 'Password',
-    tabCode: 'Code Login',
-    labelEmail: 'Email',
+    appName: 'Wei Lai Xing',
+    labelEmail: 'Account',
     labelPassword: 'Password',
     labelCode: 'Verification Code',
     labelRealName: 'Full Name',
@@ -1308,7 +1509,7 @@ const i18n = {
     labelConfirmPassword: 'Confirm Password',
     labelNewPassword: 'New Password',
     labelConfirmNewPassword: 'Confirm New Password',
-    placeholderEmail: 'Enter your email',
+    placeholderEmail: 'Enter your account',
     placeholderPassword: 'Enter your password',
     placeholderCode: 'Enter verification code',
     placeholderRealName: 'Enter your full name',
@@ -1327,6 +1528,9 @@ const i18n = {
     btnBackToLogin: 'Back to Login',
     linkForgot: 'Forgot Password?',
     linkRegister: 'Register',
+    titleForgotHint: 'Hint',
+    textForgotHint: 'Please contact your class teacher or subject teacher to reset your password',
+    btnIKnow: 'Got it',
     linkTerms: 'Terms of Service',
     linkPrivacy: 'Privacy Policy',
     textAgreement: 'By logging in, you agree to',
@@ -1344,8 +1548,8 @@ const i18n = {
     titleRegisterSuccess: 'Registration Successful',
     textRegisterSuccess: 'Registration Successful!',
     textRegisterTrialTitle: 'Congratulations, Registration Successful!',
-    descRegisterSuccess: 'Welcome to Hai Fu Zi<br>Your account has been created',
-    descRegisterTrial: 'Your email is not yet bound to any school. You can currently only experience basic product features in guest mode. To use class management permissions, please contact the school implementation contact to configure your email as an instructor or homeroom teacher account.',
+    descRegisterSuccess: 'Welcome to Xing Wei Lai<br>Your account has been created',
+    descRegisterTrial: 'Your email is not yet bound to any school. You can currently only experience basic product features in guest mode. To use class management permissions, please contact your class teacher to configure your email as a specific student identity.',
     btnTryNow: 'Try Features Now',
     titleForgotPassword: 'Forgot Password',
     titleVerifyEmail: 'Verify Email',
@@ -1365,8 +1569,8 @@ const i18n = {
     roleParentDesc: 'Track Growth',
     roleAdmin: 'Admin',
     roleAdminDesc: 'Manage Affairs',
-    toastEnterEmail: 'Please enter your email',
-    toastEmailInvalid: 'Invalid email format',
+    toastEnterEmail: 'Please enter your account',
+    toastEmailInvalid: 'Invalid account format',
     toastEnterPassword: 'Please enter your password',
     toastEnterCode: 'Please enter verification code',
     toastEnterName: 'Please enter your full name',
@@ -1375,7 +1579,7 @@ const i18n = {
     toastPasswordMismatch: 'Passwords do not match',
     toastCodeSent: 'Verification code sent to email',
     toastLoginSuccess: 'Login successful',
-    toastEnterEmailFirst: 'Please enter your email first'
+    toastEnterEmailFirst: 'Please enter your account first'
   }
 };
 
@@ -1403,13 +1607,6 @@ function switchLanguage(lang) {
 
   // Update HTML lang attribute
   document.documentElement.lang = lang;
-
-  // Update page title
-  document.title = (t.appName || 'APP') + ' - ' + (t.btnLogin || 'Login');
-
-  // Sync language selector
-  const langSelect = document.getElementById('lang-select');
-  if (langSelect) langSelect.value = lang;
 }
 
 // ==================== Page Navigation ====================
@@ -1483,76 +1680,30 @@ function togglePassword(inputId, btn) {
     : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
 }
 
-// ==================== Login Tab Switch ====================
-let currentLoginTab = 'password';
-
-function switchLoginTab(tab) {
-  currentLoginTab = tab;
-  document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + tab).classList.add('active');
-
-  if (tab === 'password') {
-    document.getElementById('login-password-form').style.display = 'block';
-    document.getElementById('login-code-form').style.display = 'none';
-    // Show forgot password link in password tab
-    document.getElementById('link-forgot').style.display = 'block';
-    document.getElementById('login-link-row').classList.remove('link-row-single');
-    document.getElementById('login-link-row').classList.add('link-row');
-  } else {
-    document.getElementById('login-password-form').style.display = 'none';
-    document.getElementById('login-code-form').style.display = 'block';
-    // Hide forgot password link in code tab
-    document.getElementById('link-forgot').style.display = 'none';
-    document.getElementById('login-link-row').classList.remove('link-row');
-    document.getElementById('login-link-row').classList.add('link-row-single');
-  }
-}
-
-// ==================== Email Validation ====================
+// ==================== Account Validation ====================
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 // ==================== Login ====================
 function handleLogin() {
-  if (currentLoginTab === 'password') {
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
 
-    if (!email) {
-      showToast('toastEnterEmail');
-      shakeInput('login-email');
-      return;
-    }
-    if (!isValidEmail(email)) {
-      showToast('toastEmailInvalid');
-      shakeInput('login-email');
-      return;
-    }
-    if (!password) {
-      showToast('toastEnterPassword');
-      shakeInput('login-password');
-      return;
-    }
-  } else {
-    const email = document.getElementById('login-code-email').value;
-    const code = document.getElementById('login-code-input').value;
-
-    if (!email) {
-      showToast('toastEnterEmail');
-      shakeInput('login-code-email');
-      return;
-    }
-    if (!isValidEmail(email)) {
-      showToast('toastEmailInvalid');
-      shakeInput('login-code-email');
-      return;
-    }
-    if (!code) {
-      showToast('toastEnterCode');
-      shakeInput('login-code-input');
-      return;
-    }
+  if (!email) {
+    showToast('toastEnterEmail');
+    shakeInput('login-email');
+    return;
+  }
+  if (!isValidEmail(email)) {
+    showToast('toastEmailInvalid');
+    shakeInput('login-email');
+    return;
+  }
+  if (!password) {
+    showToast('toastEnterPassword');
+    shakeInput('login-password');
+    return;
   }
 
   const btn = document.getElementById('login-btn');
@@ -1566,35 +1717,21 @@ function handleLogin() {
   }, 1500);
 }
 
-// ==================== Send Login Code ====================
-function sendLoginCode() {
-  const email = document.getElementById('login-code-email').value;
-  if (!email) {
-    showToast('toastEnterEmailFirst');
-    return;
-  }
-  if (!isValidEmail(email)) {
-    showToast('toastEmailInvalid');
-    return;
-  }
-
-  const btn = document.getElementById('login-send-code-btn');
-  let seconds = 60;
-  btn.disabled = true;
-
-  codeTimer = setInterval(() => {
-    seconds--;
-    if (seconds <= 0) {
-      clearInterval(codeTimer);
-      btn.disabled = false;
-      btn.textContent = i18n[currentLang].btnGetCode;
-    } else {
-      btn.textContent = seconds + 's';
-    }
-  }, 1000);
-
-  showToast('toastCodeSent');
+// ==================== Forgot Password Modal ====================
+function showForgotModal() {
+  document.getElementById('forgot-modal').classList.add('show');
 }
+
+function closeForgotModal() {
+  document.getElementById('forgot-modal').classList.remove('show');
+}
+
+// Close modal when clicking overlay
+document.getElementById('forgot-modal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeForgotModal();
+  }
+});
 
 // ==================== Role Selection ====================
 let selectedRole = null;

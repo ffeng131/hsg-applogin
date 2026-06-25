@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>账号注销</title>
+<style>
+  @font-face {
+    font-family: 'Outfit';
+    src: url('./_shared/fonts/Outfit-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Outfit';
+    src: url('./_shared/fonts/Outfit-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+  }
+
+  :root {
+    --bg: #F2F4F8;
+    --surface: #FFFFFF;
+    --ink: #1C1C1E;
+    --muted: #8E8E93;
+    --rule: #E5E5EA;
+    --accent: #007AFF;
+    --danger: #FF3B30;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 430px;
+    height: 100vh;
+    margin: 0 auto;
+    background: var(--bg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+  }
+
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    position: relative;
+    flex-shrink: 0;
+    margin-top: env(safe-area-inset-top, 0);
+  }
+
+  .nav-bar .back-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 17px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 0;
+    text-decoration: none;
+  }
+
+  .nav-bar .back-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-bar .nav-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .warning-box {
+    background: rgba(255, 59, 48, 0.08);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 24px 0;
+  }
+
+  .warning-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--danger);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .warning-title svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .warning-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  .input-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  .input-field {
+    width: 100%;
+    height: 50px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 16px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-field:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15);
+  }
+
+  .input-field::placeholder {
+    color: var(--muted);
+  }
+
+  .code-input-row {
+    display: flex;
+    gap: 12px;
+  }
+
+  .code-input-row .input-field {
+    flex: 1;
+  }
+
+  .btn-code {
+    width: 120px;
+    height: 50px;
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .btn-code:disabled {
+    border-color: var(--rule);
+    color: var(--muted);
+    cursor: not-allowed;
+  }
+
+  .btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:active {
+    background: #0051D5;
+    transform: scale(0.98);
+  }
+
+  .btn-primary:disabled {
+    background: var(--rule);
+    color: var(--muted);
+    cursor: not-allowed;
+  }
+
+  .btn-danger {
+    background: var(--danger);
+    color: white;
+  }
+
+  .btn-danger:active {
+    background: #D70015;
+    transform: scale(0.98);
+  }
+
+  .bottom-section {
+    margin-top: auto;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0));
+    text-align: center;
+  }
+
+  .bottom-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 24px;
+  }
+
+  .modal-overlay.show {
+    display: flex;
+  }
+
+  .modal {
+    background: var(--surface);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 360px;
+    padding: 24px;
+    position: relative;
+    animation: modalIn 0.25s ease-out;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .modal-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 59, 48, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px auto 16px;
+  }
+
+  .modal-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--danger);
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .modal-text {
+    font-size: 14px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .page::-webkit-scrollbar { display: none; }
+  .page { -ms-overflow-style: none; scrollbar-width: none; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+
+  .shake {
+    animation: shake 0.4s ease-in-out;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="nav-bar">
+    <a href="./index.html" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      <span>返回</span>
+    </a>
+    <span class="nav-title">账号注销</span>
+  </div>
+
+  <div class="page">
+    <div class="warning-box">
+      <div class="warning-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>重要提示：注销账号后所有数据将永久清除，无法恢复！</span>
+      </div>
+      <div class="warning-text">
+        账号内全部积分、金币、礼品兑换记录、学习任务数据将被彻底删除；您的注册邮箱、个人浏览记录等隐私信息将全部清除，平台不再留存；账号注销完成后，无法登录、无法找回账号与任何资产，如需使用需重新注册；本注销功能仅适用于自主注册的游客账号；校内教师分配账号无法自助注销，可联系学校交付老师办理。
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">邮箱</label>
+      <input type="email" class="input-field" id="delete-email" placeholder="请输入邮箱地址">
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">验证码</label>
+      <div class="code-input-row">
+        <input type="tel" class="input-field" id="delete-code" maxlength="6" placeholder="请输入验证码">
+        <button class="btn-code" id="send-code-btn" onclick="sendDeleteCode()">获取验证码</button>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="verify-btn" onclick="handleVerify()">验证并继续</button>
+
+    <div class="bottom-section">
+      <p class="bottom-text">如有疑问，请联系客服或管理员</p>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-icon">
+      <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <div class="modal-title">确认注销账号？</div>
+    <div class="modal-text">注销后账号将无法恢复，所有数据将被永久删除。请确认是否继续。</div>
+    <button class="btn btn-danger" onclick="confirmDelete()">确认注销</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+function shakeInput(inputId) {
+  const input = document.getElementById(inputId);
+  input.classList.add('shake');
+  setTimeout(() => input.classList.remove('shake'), 400);
+}
+
+let codeTimer = null;
+
+function sendDeleteCode() {
+  const email = document.getElementById('delete-email').value;
+  if (!email) {
+    showToast('请输入邮箱地址');
+    return;
+  }
+  if (!isValidEmail(email)) {
+    showToast('邮箱格式不正确');
+    return;
+  }
+
+  const btn = document.getElementById('send-code-btn');
+  let seconds = 60;
+  btn.disabled = true;
+
+  codeTimer = setInterval(() => {
+    seconds--;
+    if (seconds <= 0) {
+      clearInterval(codeTimer);
+      btn.disabled = false;
+      btn.textContent = '获取验证码';
+    } else {
+      btn.textContent = seconds + 's';
+    }
+  }, 1000);
+
+  showToast('验证码已发送至邮箱');
+}
+
+function handleVerify() {
+  const email = document.getElementById('delete-email').value;
+  const code = document.getElementById('delete-code').value;
+
+  if (!email) {
+    showToast('请输入邮箱地址');
+    shakeInput('delete-email');
+    return;
+  }
+  if (!isValidEmail(email)) {
+    showToast('邮箱格式不正确');
+    shakeInput('delete-email');
+    return;
+  }
+  if (!code) {
+    showToast('请输入验证码');
+    shakeInput('delete-code');
+    return;
+  }
+
+  const btn = document.getElementById('verify-btn');
+  btn.disabled = true;
+  btn.textContent = '验证中...';
+
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.textContent = '验证并继续';
+    document.getElementById('confirm-modal').classList.add('show');
+  }, 800);
+}
+
+function closeModal() {
+  document.getElementById('confirm-modal').classList.remove('show');
+}
+
+function confirmDelete() {
+  // In a real app, this would call an API to delete the account
+  window.location.href = './index.html';
+}
+
+// Close modal when clicking overlay
+document.getElementById('confirm-modal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeModal();
+  }
+});
+</script>
+
+</body>
+</html>

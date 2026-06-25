@@ -515,6 +515,35 @@
     line-height: 1.5;
   }
 
+  /* Trial / Guest Mode State */
+  .trial-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(248, 203, 62, 0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto 24px;
+  }
+
+  .trial-icon svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--accent);
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .trial-desc {
+    font-size: 15px;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 32px;
+    line-height: 1.6;
+    padding: 0 12px;
+  }
+
   /* Toast */
   .toast {
     position: fixed;
@@ -1095,7 +1124,23 @@
     <h2 class="success-title" data-i18n="textRegisterSuccess">註冊成功！</h2>
     <p class="success-desc" data-i18n="descRegisterSuccess">歡迎加入APP名稱<br>您的帳號已創建成功</p>
 
-    <button class="btn btn-primary" onclick="goToPage('page-login')" data-i18n="btnLoginNow">立即登入</button>
+    <button class="btn btn-primary" onclick="goToPage('page-register-trial')" data-i18n="btnNext">下一步</button>
+  </div>
+
+  <!-- ==================== 注册成功 - 未绑定学校 ==================== -->
+  <div class="page" id="page-register-trial">
+    <div class="nav-bar">
+      <span class="nav-title" data-i18n="titleRegisterSuccess">註冊成功</span>
+    </div>
+
+    <div class="trial-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+
+    <h2 class="success-title" data-i18n="textRegisterTrialTitle">恭喜，註冊成功！</h2>
+    <p class="trial-desc" data-i18n="descRegisterTrial">您的郵箱暫未綁定任何學校，當前僅可遊客模式體驗產品基礎功能。若需使用班級管理相關權限，請聯繫班主任老師，將您的郵箱配置為具體學生身份。</p>
+
+    <button class="btn btn-primary" onclick="goToPage('page-login')" data-i18n="btnTryNow">立即體驗產品功能</button>
   </div>
 
   <!-- ==================== 忘记密码 - 验证邮箱 ==================== -->
@@ -1210,7 +1255,7 @@
 // ==================== 多语言支持 ====================
 const i18n = {
   'zh-TW': {
-    appName: '星未来',
+    appName: '未來星',
     tabPassword: '密碼登入',
     tabCode: '驗證碼登入',
     labelEmail: '電子郵件',
@@ -1256,7 +1301,10 @@ const i18n = {
     subtitleSelectSchool: '選擇您所在的學校以完成註冊',
     titleRegisterSuccess: '註冊成功',
     textRegisterSuccess: '註冊成功！',
+    textRegisterTrialTitle: '恭喜，註冊成功！',
     descRegisterSuccess: '歡迎加入星未来<br>您的帳號已創建成功',
+    descRegisterTrial: '您的郵箱暫未綁定任何學校，當前僅可遊客模式體驗產品基礎功能。若需使用班級管理相關權限，請聯繫班主任老師，將您的郵箱配置為具體學生身份。',
+    btnTryNow: '立即體驗產品功能',
     titleForgotPassword: '忘記密碼',
     titleVerifyEmail: '驗證電子郵件',
     subtitleVerifyEmail: '請輸入您註冊時使用的電子郵件地址',
@@ -1288,7 +1336,7 @@ const i18n = {
     toastEnterEmailFirst: '請先輸入電子郵件地址'
   },
   'zh-CN': {
-    appName: '星未来',
+    appName: '未来星',
     tabPassword: '密码登录',
     tabCode: '验证码登录',
     labelEmail: '邮箱',
@@ -1334,7 +1382,10 @@ const i18n = {
     subtitleSelectSchool: '选择您所在的学校以完成注册',
     titleRegisterSuccess: '注册成功',
     textRegisterSuccess: '注册成功！',
+    textRegisterTrialTitle: '恭喜，注册成功！',
     descRegisterSuccess: '欢迎加入星未来<br>您的账号已创建成功',
+    descRegisterTrial: '您的邮箱暂未绑定任何学校，当前仅可游客模式体验产品基础功能。若需使用班级管理相关权限，请联系班主任老师，将您的邮箱配置为具体学生身份。',
+    btnTryNow: '立即体验产品功能',
     titleForgotPassword: '忘记密码',
     titleVerifyEmail: '验证邮箱',
     subtitleVerifyEmail: '请输入您注册时使用的邮箱地址',
@@ -1366,7 +1417,7 @@ const i18n = {
     toastEnterEmailFirst: '请先输入邮箱地址'
   },
   'en': {
-    appName: 'Xing Wei Lai',
+    appName: 'Wei Lai Xing',
     tabPassword: 'Password',
     tabCode: 'Code Login',
     labelEmail: 'Email',
@@ -1412,7 +1463,10 @@ const i18n = {
     subtitleSelectSchool: 'Select your school to complete registration',
     titleRegisterSuccess: 'Registration Successful',
     textRegisterSuccess: 'Registration Successful!',
+    textRegisterTrialTitle: 'Congratulations, Registration Successful!',
     descRegisterSuccess: 'Welcome to Xing Wei Lai<br>Your account has been created',
+    descRegisterTrial: 'Your email is not yet bound to any school. You can currently only experience basic product features in guest mode. To use class management permissions, please contact your class teacher to configure your email as a specific student identity.',
+    btnTryNow: 'Try Features Now',
     titleForgotPassword: 'Forgot Password',
     titleVerifyEmail: 'Verify Email',
     subtitleVerifyEmail: 'Please enter the email you used to register',
@@ -1747,7 +1801,7 @@ function handleRegister() {
   if (password.length < 6) { showToast('toastPasswordShort'); shakeInput('reg-password'); return; }
   if (password !== confirm) { showToast('toastPasswordMismatch'); shakeInput('reg-password-confirm'); return; }
 
-  goToPage('page-register-school');
+  goToPage('page-register-trial');
 }
 
 // ==================== School Selection ====================
